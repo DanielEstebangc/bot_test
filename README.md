@@ -43,4 +43,17 @@ El flujo de decisión sigue un estándar de pensamiento de agente:
     OPENAI_MODEL=gpt-oss:20b
     DATABASE_URL=postgres://usuario:password@localhost:5432/pockibot_db
     ```
-5. **Iniciar aplicación:** `npm run start:dev`
+4. **Exponer Servidor Local (ngrok)**
+  Como la API de WhatsApp requiere una URL pública (HTTPS), debes usar el ejecutable incluido en la raíz:
+  Abre una terminal nueva en la raíz del proyecto.
+  Ejecuta: .\ngrok.exe http 3000
+  Copia la URL de Forwarding (ej. https://1234.ngrok-free.app).
+  Configura esta URL en el Dashboard de Meta Developers dentro de la configuración del Webhook, añadiendo el path: /whatsapp/webhook.
+5. **Documentación de Endpoints (Postman)**
+  Se ha incluido el archivo pockibot.postman_collection.json en la raíz del repositorio.
+
+  Importancia: Permite simular mensajes de WhatsApp y verificar el Webhook sin necesidad de enviar mensajes reales por el celular.
+
+  Uso: Importa el archivo en Postman y ajusta la variable hub.verify_token para las pruebas iniciales.
+
+7. **Iniciar aplicación:** `npm run start:dev`
