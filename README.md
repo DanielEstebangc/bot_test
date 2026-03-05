@@ -83,7 +83,7 @@ Para facilitar el testing sin depender de la API de Meta, se incluye el archivo 
    DB_NAME=pocki_db
 5. **Exponer Servidor Local (ngrok)**
    
-  Como la API de WhatsApp requiere una URL pública (HTTPS), debes usar el ejecutable incluido en la raíz:
+    Como la API de WhatsApp requiere una URL pública (HTTPS), debes usar el ejecutable incluido en la raíz:
  - Abre una terminal nueva en la raíz del proyecto.
  - Ejecuta: .\ngrok.exe http 3000
  - Copia la URL de Forwarding (ej. https://1234.ngrok-free.app).
