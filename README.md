@@ -10,6 +10,7 @@ Asistente inteligente para WhatsApp desarrollado con **NestJS**, enfocado en sob
   - **Scraping Financiero:** Extracción en tiempo real de la TRM oficial en Colombia desde fuentes web.
   - **Búsqueda de Noticias:** Localización de actualidad tecnológica mediante keywords dinámicos.
   - **Información Estructurada:** Integración con APIs de conocimiento público (Wikipedia) para proveer datos precisos y verificables.
+  - **Cripto-Intelligence:** Consulta de precios de criptomonedas en tiempo real (BTC, ETH, etc.) para análisis de mercado inmediato.
 - **Persistencia y Contexto:** Historial de conversaciones almacenado en **PostgreSQL** con **TypeORM**, permitiendo la gestión de roles (`user`, `assistant`) para futuras implementaciones de memoria conversacional.
 - **Arquitectura Limpia:** Diseño modular en NestJS siguiendo principios de **Solid** y **Clean Code**.
 
