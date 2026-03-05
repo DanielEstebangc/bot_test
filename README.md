@@ -63,14 +63,24 @@ Para facilitar el testing sin depender de la API de Meta, se incluye el archivo 
 2. **Instalar dependencias:** `npm install`
 3. **Levantar Ollama:** `ollama run gpt-oss:20b` (Asegurarse de tener Ollama instalado).
 4. **Configurar .env:**
-    ```env
-    WA_VERIFY_TOKEN=tu_token_seguro
-    WA_ACCESS_TOKEN=tu_token_de_meta
-    WA_PHONE_NUMBER_ID=tu_id_de_telefono
-    OPENAI_BASE_URL=http://localhost:11434/v1
-    OPENAI_MODEL=gpt-oss:20b
-    DATABASE_URL=postgres://usuario:password@localhost:5432/pockibot_db
-    ```
+   ```env
+   # Meta / WhatsApp
+   WA_VERIFY_TOKEN=pockibot_secreto_2026
+   WA_ACCESS_TOKEN=tu_access_token_aqui
+   WA_PHONE_NUMBER_ID=1054703254387280
+   WA_BUSINESS_ACCOUNT_ID=1645582889945416
+
+   # OpenAI / Ollama
+   OPENAI_API_KEY=ollama 
+   OPENAI_BASE_URL=http://localhost:11434/v1
+   OPENAI_MODEL=gpt-oss:20b
+
+   # Database
+   DB_HOST=localhost
+   DB_PORT=5432
+   DB_USER=postgres
+   DB_PASS=tu_password
+   DB_NAME=pocki_db
 5. **Exponer Servidor Local (ngrok)**
    
   Como la API de WhatsApp requiere una URL pública (HTTPS), debes usar el ejecutable incluido en la raíz:
