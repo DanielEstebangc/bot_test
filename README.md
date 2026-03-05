@@ -45,30 +45,56 @@ El flujo de decisión sigue un estándar de pensamiento de agente:
 3. **Ejecución de Tool:** El `ToolsService` procesa la solicitud (Scraping o API Call).
 4. **Síntesis de Respuesta:** La IA recibe los datos "crudos", los procesa y entrega al usuario una respuesta estructurada (tablas, listas o resúmenes).
 
+## 🧪 Pruebas y Documentación de Endpoints
+
+Para facilitar el testing sin depender de la API de Meta, se incluye el archivo `pockibot.postman_collection.json` en la raíz del repositorio.
+
+### **Uso del Simulador:**
+* **Payload Real:** El request *'Simular Mensaje Real'* contiene la estructura exacta que envía WhatsApp Cloud API (incluyendo metadatos y perfil de usuario).
+* **Escenario de Noticia:** El payload está configurado para preguntar: *“¿Quién ganó el premio de tecnología ayer?”*, lo que permite probar el flujo completo: **Webhook -> IA -> Tool (Noticias) -> Respuesta**.
+
+| Método | Endpoint | Función |
+| :--- | :--- | :--- |
+| **GET** | `/whatsapp/webhook` | Verificación de `hub.verify_token` (Handshake con Meta). |
+| **POST** | `/whatsapp/webhook` | Recepción de mensajes y procesamiento de Agentes. |
 ## 🚀 Instalación y Uso
 
 1. **Clonar el repo:** `git clone https://github.com/tu-usuario/pockibot.git`
 2. **Instalar dependencias:** `npm install`
 3. **Levantar Ollama:** `ollama run gpt-oss:20b` (Asegurarse de tener Ollama instalado).
 4. **Configurar .env:**
-    ```env
-    WA_VERIFY_TOKEN=tu_token_seguro
-    WA_ACCESS_TOKEN=tu_token_de_meta
-    WA_PHONE_NUMBER_ID=tu_id_de_telefono
-    OPENAI_BASE_URL=http://localhost:11434/v1
-    OPENAI_MODEL=gpt-oss:20b
-    DATABASE_URL=postgres://usuario:password@localhost:5432/pockibot_db
-    ```
-4. **Exponer Servidor Local (ngrok)**
+   ```env
+   # Meta / WhatsApp
+   WA_VERIFY_TOKEN=pockibot_secreto_2026
+   WA_ACCESS_TOKEN=tu_access_token_aqui
+   WA_PHONE_NUMBER_ID=1054703254387280
+   WA_BUSINESS_ACCOUNT_ID=1645582889945416
+
+   # OpenAI / Ollama
+   OPENAI_API_KEY=ollama 
+   OPENAI_BASE_URL=http://localhost:11434/v1
+   OPENAI_MODEL=gpt-oss:20b
+
+   # Database
+   DB_HOST=localhost
+   DB_PORT=5432
+   DB_USER=postgres
+   DB_PASS=tu_password
+   DB_NAME=pocki_db
+5. **Exponer Servidor Local (ngrok)**
    
-Como la API de WhatsApp requiere una URL pública (HTTPS), debes usar el ejecutable incluido en la raíz:
+    Como la API de WhatsApp requiere una URL pública (HTTPS), debes usar el ejecutable incluido en la raíz:
  - Abre una terminal nueva en la raíz del proyecto.
  - Ejecuta: .\ngrok.exe http 3000
  - Copia la URL de Forwarding (ej. https://1234.ngrok-free.app).
  - Configura esta URL en el Dashboard de Meta Developers dentro de la configuración del Webhook, añadiendo el path: /whatsapp/webhook.
-5. **Documentación de Endpoints (Postman)**
+6. **Documentación de Endpoints (Postman)**
 - Se ha incluido el archivo pockibot.postman_collection.json en la raíz del repositorio.
 - Importancia: Permite simular mensajes de WhatsApp y verificar el Webhook sin necesidad de enviar mensajes reales por el celular.
 - Uso: Importa el archivo en Postman y ajusta la variable hub.verify_token para las pruebas iniciales.
 
 7. **Iniciar aplicación:** `npm run start:dev`
+
+### 🎥 Demostración en Vivo
+Puedes ver el funcionamiento del bot en el siguiente enlace:
+https://drive.google.com/file/d/1wFp7LbmSZS44TibHyKtAe-8c9Hp9LZVJ/view?usp=sharing
