@@ -1,0 +1,20 @@
+{
+    "name": "Simular Mensaje Real (POST)",
+    "request": {
+        "method": "POST",
+        "header": [
+            { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+            "mode": "raw",
+            "raw": "{\n  \"object\": \"whatsapp_business_account\",\n  \"entry\": [\n    {\n      \"id\": \"880663648215377\",\n      \"changes\": [\n        {\n          \"value\": {\n            \"messaging_product\": \"whatsapp\",\n            \"metadata\": {\n              \"display_phone_number\": \"15550505555\",\n              \"phone_number_id\": \"222222222222222\"\n            },\n            \"contacts\": [\n              {\n                \"profile\": { \"name\": \"Daniel Aspirante\" },\n                \"wa_id\": \"573001234567\"\n              }\n            ],\n            \"messages\": [\n              {\n                \"from\": \"573001234567\",\n                \"id\": \"wamid.HBgLNTczMDAxMjM0NTY3FQIAERgSQ0VDREU5OEY0N0E0OEYzOUM0AA==\",\n                \"timestamp\": \"1709600000\",\n                \"text\": {\n                  \"body\": \"¿Quién ganó el premio de tecnología ayer?\"\n                },\n                \"type\": \"text\"\n              }\n            ]\n          },\n          \"field\": \"messages\"\n        }\n      ]\n    }\n  ]\n}"
+        },
+        "url": {
+            "raw": "http://localhost:3000/whatsapp/webhook",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "3000",
+            "path": ["whatsapp", "webhook"]
+        }
+    }
+}
