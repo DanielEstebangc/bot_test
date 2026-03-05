@@ -44,7 +44,7 @@ El flujo de decisión sigue un estándar de pensamiento de agente:
     DATABASE_URL=postgres://usuario:password@localhost:5432/pockibot_db
     ```
 4. **Exponer Servidor Local (ngrok)**
- - Como la API de WhatsApp requiere una URL pública (HTTPS), debes usar el ejecutable incluido en la raíz:
+Como la API de WhatsApp requiere una URL pública (HTTPS), debes usar el ejecutable incluido en la raíz:
  - Abre una terminal nueva en la raíz del proyecto.
  - Ejecuta: .\ngrok.exe http 3000
  - Copia la URL de Forwarding (ej. https://1234.ngrok-free.app).
