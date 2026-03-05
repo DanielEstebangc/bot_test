@@ -45,6 +45,18 @@ El flujo de decisión sigue un estándar de pensamiento de agente:
 3. **Ejecución de Tool:** El `ToolsService` procesa la solicitud (Scraping o API Call).
 4. **Síntesis de Respuesta:** La IA recibe los datos "crudos", los procesa y entrega al usuario una respuesta estructurada (tablas, listas o resúmenes).
 
+## 🧪 Pruebas y Documentación de Endpoints
+
+Para facilitar el testing sin depender de la API de Meta, se incluye el archivo `pockibot.postman_collection.json` en la raíz del repositorio.
+
+### **Uso del Simulador:**
+* **Payload Real:** El request *'Simular Mensaje Real'* contiene la estructura exacta que envía WhatsApp Cloud API (incluyendo metadatos y perfil de usuario).
+* **Escenario de Noticia:** El payload está configurado para preguntar: *“¿Quién ganó el premio de tecnología ayer?”*, lo que permite probar el flujo completo: **Webhook -> IA -> Tool (Noticias) -> Respuesta**.
+
+| Método | Endpoint | Función |
+| :--- | :--- | :--- |
+| **GET** | `/whatsapp/webhook` | Verificación de `hub.verify_token` (Handshake con Meta). |
+| **POST** | `/whatsapp/webhook` | Recepción de mensajes y procesamiento de Agentes. |
 ## 🚀 Instalación y Uso
 
 1. **Clonar el repo:** `git clone https://github.com/tu-usuario/pockibot.git`
@@ -59,14 +71,14 @@ El flujo de decisión sigue un estándar de pensamiento de agente:
     OPENAI_MODEL=gpt-oss:20b
     DATABASE_URL=postgres://usuario:password@localhost:5432/pockibot_db
     ```
-4. **Exponer Servidor Local (ngrok)**
+5. **Exponer Servidor Local (ngrok)**
    
-Como la API de WhatsApp requiere una URL pública (HTTPS), debes usar el ejecutable incluido en la raíz:
+  Como la API de WhatsApp requiere una URL pública (HTTPS), debes usar el ejecutable incluido en la raíz:
  - Abre una terminal nueva en la raíz del proyecto.
  - Ejecuta: .\ngrok.exe http 3000
  - Copia la URL de Forwarding (ej. https://1234.ngrok-free.app).
  - Configura esta URL en el Dashboard de Meta Developers dentro de la configuración del Webhook, añadiendo el path: /whatsapp/webhook.
-5. **Documentación de Endpoints (Postman)**
+6. **Documentación de Endpoints (Postman)**
 - Se ha incluido el archivo pockibot.postman_collection.json en la raíz del repositorio.
 - Importancia: Permite simular mensajes de WhatsApp y verificar el Webhook sin necesidad de enviar mensajes reales por el celular.
 - Uso: Importa el archivo en Postman y ajusta la variable hub.verify_token para las pruebas iniciales.
