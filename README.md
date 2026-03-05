@@ -22,6 +22,21 @@ Asistente inteligente para WhatsApp desarrollado con **NestJS**, enfocado en sob
 - **Integración:** WhatsApp Cloud API (Meta)
 - **Herramientas:** Axios (HTTP Client), Cheerio (Scraping), Wikipedia REST API
 
+## 🏛️ Arquitectura y Decisiones Técnicas
+
+El proyecto sigue una arquitectura Modular y Orientada a Servicios, aprovechando las bondades de NestJS para garantizar la escalabilidad y mantenibilidad.
+1. **Desacoplamiento de Herramientas (Tool Pattern)**
+Se implementó un ToolsService centralizado. En lugar de saturar el servicio de IA con lógica de negocio, la IA actúa únicamente como un Orquestador. Ella detecta la intención y delega la ejecución al servicio correspondiente (Scraping, API Cripto, etc.). Esto permite añadir nuevas funcionalidades sin tocar la lógica del LLM.
+
+2. **Manejo Asíncrono de Webhooks**
+Una decisión técnica crítica fue responder con un estado 200 OK a Meta de forma inmediata. Dado que el procesamiento de modelos LLM y el Scraping pueden tomar varios segundos, procesar la respuesta de forma asíncrona evita que Meta reintente el envío del mensaje (timeout de 5s), previniendo bucles infinitos de respuestas.
+
+3. **Persistencia con TypeORM**
+Se eligió PostgreSQL para almacenar el historial de mensajes. La decisión de usar una DB relacional permite estructurar los metadatos de los mensajes (ID de WhatsApp, Timestamp, Roles) de forma robusta, facilitando futuras implementaciones de memoria de largo plazo (RAG) o analíticas de uso.
+
+4. **Estrategia de Scraping vs API**
+Para la TRM, se optó por scraping sobre fuentes oficiales para garantizar el dato exacto del mercado colombiano. Para Criptomonedas, se priorizó el uso de APIs estructuradas para obtener precisión en milésimas de segundo debido a la volatilidad de los activos.
+
 ## 🤖 Lógica de Funcionamiento (Tool Discovery)
 
 El flujo de decisión sigue un estándar de pensamiento de agente:
