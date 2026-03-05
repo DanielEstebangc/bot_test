@@ -94,3 +94,7 @@ Para facilitar el testing sin depender de la API de Meta, se incluye el archivo 
 - Uso: Importa el archivo en Postman y ajusta la variable hub.verify_token para las pruebas iniciales.
 
 7. **Iniciar aplicación:** `npm run start:dev`
+
+### 🎥 Demostración en Vivo
+Puedes ver el funcionamiento del bot en el siguiente enlace:
+https://drive.google.com/file/d/1wFp7LbmSZS44TibHyKtAe-8c9Hp9LZVJ/view?usp=sharing
