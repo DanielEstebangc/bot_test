@@ -1,4 +1,4 @@
-# PockiBot - WhatsApp AI Assistant 🚀
+# Bot - WhatsApp AI Assistant 🚀
 
 Asistente inteligente para WhatsApp desarrollado con **NestJS**, enfocado en soberanía de datos y escalabilidad mediante el uso de modelos de lenguaje locales.
 
